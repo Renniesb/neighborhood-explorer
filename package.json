@@ -1,0 +1,19 @@
+{
+  "name": "neighborhood-explorer",
+  "version": "1.0.0",
+  "description": "An application to explore my neighborhood",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Renniesb/neighborhood-explorer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Renniesb/neighborhood-explorer/issues"
+  },
+  "homepage": "https://github.com/Renniesb/neighborhood-explorer"
+}
