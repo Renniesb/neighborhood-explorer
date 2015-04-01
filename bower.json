@@ -1,0 +1,20 @@
+{
+  "name": "neighborhood-explorer",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Renniesb/neighborhood-explorer",
+  "authors": [
+    "Rennie Bevineau <rsbevineau@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "knockout.js": "~3.1.0"
+  }
+}
