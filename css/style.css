@@ -1,0 +1,17 @@
+html, body, #map-canvas {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+      }
+    
+
+
+
+
+#filter-box {
+  width: 350px; 
+  height: 25px;
+  font-size: 16px; 
+  margin: 10px; 
+  padding: 5px
+}

@@ -1,6 +1,6 @@
 var map, broomfield;
 
- function initializeMap(){
+ var ExplorerMap = function(){
 
  	broomfield= new google.maps.LatLng(39.925899, -105.132387);
 	
@@ -12,4 +12,13 @@ var map, broomfield;
       mapOptions);
 }
 
-google.maps.event.addDomListener(window, 'load', initializeMap);
+var ExplorerViewModel = function(){
+	var self = this;
+
+	self.term = ko.observable("");
+}
+
+
+google.maps.event.addDomListener(window, 'load', ExplorerMap);
+
+ko.applyBindings(new ExplorerViewModel());

@@ -3,23 +3,21 @@
   <head>
     <title>Neighborhood Explorer</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-    </style>
+    <meta charset="utf-8">    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="bower_components/knockout.js/knockout.js"></script> 
-    <script src="js/main.js"></script>
+    
   </head>
   <body>
     <div id="map-canvas"></div>
+    <!-- place searchbox with a binding to the search term -->
+    <input type="text" id="filter-box" placeholder="Filter results by: Name" data-bind="value: term" />
 
-
-
+    <script src="js/main.js"></script>
+  </body>
+</html>
 
 
 
