@@ -1,5 +1,6 @@
 var map, marker, broomfield;
-
+  
+  // create locations to be used in marker functions
  var locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949}];
 
  var ExplorerMap = function(){
@@ -19,7 +20,7 @@ var map, marker, broomfield;
  	
  	var infowindow = new google.maps.InfoWindow(),i;
   
-
+  // create marker functions
  	for (i = 0; i < locations.length; i++) {
  		marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
