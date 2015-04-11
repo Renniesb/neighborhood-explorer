@@ -1,7 +1,7 @@
-var map, marker, broomfield;
+var map, marker, broomfield, locations;
   
-  // create locations to be used in marker functions
- var locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949}];
+  // create locations objects in an array to be used in marker functions.
+ locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949}];
 
  var ExplorerMap = function(){
 
@@ -14,13 +14,9 @@ var map, marker, broomfield;
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
- 	
-
-
- 	
  	var infowindow = new google.maps.InfoWindow(),i;
   
-  // create marker functions
+  // create marker functions to place markers on map and set up the info window
  	for (i = 0; i < locations.length; i++) {
  		marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
@@ -34,9 +30,7 @@ var map, marker, broomfield;
                 infowindow.open(map, marker);
             }
         })(marker));
-
-     
-    
+ 
 
  	};
 
@@ -45,6 +39,7 @@ var map, marker, broomfield;
 var ExplorerViewModel = function(){
 	var self = this;
 	
+  // observe the global array of locations
   self.coordinates= ko.observableArray(locations);
 
 
