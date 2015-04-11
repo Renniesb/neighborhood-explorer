@@ -23,15 +23,16 @@ var map, marker, broomfield;
  	for (i = 0; i < locations.length; i++) {
  		marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
-            map: map
+            map: map,
+            title: locations[i].name
         }); 
 
-        google.maps.event.addListener(marker, 'click', (function(marker, i)  {
+        google.maps.event.addListener(marker, 'click', (function(marker)  {
             return function() {
-                infowindow.setContent(marker);
+                infowindow.setContent(marker.title);
                 infowindow.open(map, marker);
             }
-        })(marker, i));
+        })(marker));
 
      
     
