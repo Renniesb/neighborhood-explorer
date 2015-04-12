@@ -8,7 +8,7 @@ var map, marker, broomfield, locations;
  	broomfield= new google.maps.LatLng(39.925899, -105.132387);
 	
 	var mapOptions = {
-	zoom: 12,
+	  zoom: 12,
     center: broomfield
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),

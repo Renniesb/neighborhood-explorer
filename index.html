@@ -15,13 +15,9 @@
     <input id="filter-box" placeholder="Filter results by: Name" data-bind="value: term" />
     <div id="map-canvas"></div>
     
-    <ul id="list-view">
+    <ul data-bind="foreach: locations"  id="list-view">
       
-          <li>restaurant name</li> 
-          <li>restaurant name</li>         
-          <li>restaurant name</li>
-          <li>restaurant name</li>
-          <li>restaurant name</li>
+          <li data-bind="text: name"></li>
           
     </ul>
 

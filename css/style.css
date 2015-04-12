@@ -9,8 +9,15 @@ html, body, #map-canvas {
 
 ul {
 	 list-style-type: none;
+	 width: 300px;
 	 margin: 0;
 	 padding: 0;
+	 background-color: white;
+}
+
+li {
+	border-bottom: 2px solid black;
+
 }
 
 #filter-box {
