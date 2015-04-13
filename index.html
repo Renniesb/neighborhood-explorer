@@ -15,9 +15,9 @@
     <input id="filter-box" placeholder="Filter results by: Name" data-bind="value: term" />
     <div id="map-canvas"></div>
     
-    <ul data-bind="foreach:  { data: locations, as: 'location' }" id="list-view">
+    <ul data-bind="foreach: locations" id="list-view">
       
-          <li data-bind="text: name" data-bind="click: OpenInfoWindow(location.markerNum)"></li>
+          <li data-bind="text: name , click: $parent.OpenInfoWindow"></li>
           
     </ul>
 

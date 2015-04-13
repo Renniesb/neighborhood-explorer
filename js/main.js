@@ -1,16 +1,13 @@
-var map, marker, broomfield, locations;
+var infowindow, map, marker, broomfield, locations;
 
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 1},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 2},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 3}];
+ locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 0},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 1},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 2}];
 
- function OpenInfoWindow(markerNum){
-     infowindow.open(map,markers[markerNum]);
- }
+
 
  var ExplorerMap = function(){
-
 
 
  	broomfield= new google.maps.LatLng(39.925899, -105.132387);
@@ -22,8 +19,8 @@ var markers = [];
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
- 	var infowindow = new google.maps.InfoWindow(),i;
-  
+ 	infowindow = new google.maps.InfoWindow();
+  var i;
   // create marker functions to place markers on map and set up the info window
  	for (i = 0; i < locations.length; i++) {
  		marker = new google.maps.Marker({
@@ -31,6 +28,8 @@ var markers = [];
             map: map,
             title: locations[i].name
         }); 
+
+    
 
         google.maps.event.addListener(marker, 'click', (function(marker)  {
             return function() {
@@ -51,6 +50,15 @@ var ExplorerViewModel = function(){
 	
   // observe the global array of locations
   self.locations= ko.observableArray(locations);
+
+  self.markers=ko.observableArray(markers);
+
+  self.OpenInfoWindow= function(locations){
+
+    var point= markers[locations.markerNum];
+     infowindow.open(map, point);
+     infowindow.setContent(point.title);
+ }
 
 
 
