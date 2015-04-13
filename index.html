@@ -15,32 +15,16 @@
     <input id="filter-box" placeholder="Filter results by: Name" data-bind="value: term" />
     <div id="map-canvas"></div>
     
-    <ul data-bind="foreach: locations"  id="list-view">
+    <ul data-bind="foreach:  { data: locations, as: 'location' }" id="list-view">
       
-          <li data-bind="text: name"></li>
+          <li data-bind="text: name" data-bind="click: OpenInfoWindow(location.markerNum)"></li>
           
     </ul>
-
-
-
-
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="bower_components/knockout.js/knockout.js"></script> 
     <script src="js/main.js"></script>
   </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

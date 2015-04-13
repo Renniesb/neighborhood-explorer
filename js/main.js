@@ -1,9 +1,17 @@
 var map, marker, broomfield, locations;
+
+var markers = [];
   
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949}];
+ locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 1},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 2},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 3}];
+
+ function OpenInfoWindow(markerNum){
+     infowindow.open(map,markers[markerNum]);
+ }
 
  var ExplorerMap = function(){
+
+
 
  	broomfield= new google.maps.LatLng(39.925899, -105.132387);
 	
@@ -30,6 +38,8 @@ var map, marker, broomfield, locations;
                 infowindow.open(map, marker);
             }
         })(marker));
+
+        markers.push(marker);
  
 
  	};
@@ -40,7 +50,7 @@ var ExplorerViewModel = function(){
 	var self = this;
 	
   // observe the global array of locations
-  self.coordinates= ko.observableArray(locations);
+  self.locations= ko.observableArray(locations);
 
 
 
