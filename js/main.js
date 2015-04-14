@@ -33,15 +33,23 @@ var markers = [];
 
         google.maps.event.addListener(marker, 'click', (function(marker)  {
             return function() {
+
+                // set info window with a title and open the info window
                 infowindow.setContent(marker.title);
                 infowindow.open(map, marker);
+
+              // add marker animation by setting and timing out animation
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout(function(){ marker.setAnimation(null); }, 750);
+                            
             }
         })(marker));
 
         markers.push(marker);
- 
 
  	};
+
+
 
 }
 
@@ -53,18 +61,26 @@ var ExplorerViewModel = function(){
 
   self.markers=ko.observableArray(markers);
 
+  // Create function to open info windows in response to clicks on list-view. 
   self.OpenInfoWindow= function(locations){
 
     var point= markers[locations.markerNum];
+
+    // set info window with a title and open the info window
      infowindow.open(map, point);
      infowindow.setContent(point.title);
+
+     // add marker animation by setting and timing out animation
+     point.setAnimation(google.maps.Animation.BOUNCE);
+     setTimeout(function(){ point.setAnimation(null); }, 750);
+
  }
 
 
 
 	self.term = ko.observable("");
 	
-
+  
 
 }
 
