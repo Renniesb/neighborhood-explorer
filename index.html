@@ -12,11 +12,11 @@
     
 
     <!-- place searchbox with a binding to the search term -->
-    <input id="filter-box" placeholder="Filter results by: Name" data-bind="value: term" />
+    <input id="filter-box" placeholder="Filter results by: Name" type="search" data-bind="value: filter, valueUpdate:'keyup'" />
     <div id="map-canvas"></div>
     
     <!-- iterate through the locations-->
-    <ul data-bind="foreach: locations" id="list-view">
+    <ul data-bind="foreach: filteredItems" id="list-view">
     
    	  <!--append the name of each location to list item and make corresponding infowindow open with a click event -->
       <li data-bind="text: name , click: $parent.OpenInfoWindow"></li>

@@ -76,13 +76,25 @@ var ExplorerViewModel = function(){
 
  }
 
-
-
-	self.term = ko.observable("");
+ self.filter= ko.observable('');
 	
-  
 
+ //filter the items using the filter text
+    self.filteredItems = ko.computed(function() {
+    var filter = this.filter().toLowerCase();
+    if (!filter) {
+        return self.locations();
+    } else {
+        return ko.utils.arrayFilter(self.locations(), function(location) {
+            return ko.utils.stringStartsWith(location.name().toLowerCase(), filter);
+        });
+    }
+}, self);   
 }
+
+
+
+
 
 
 google.maps.event.addDomListener(window, 'load', ExplorerMap);
