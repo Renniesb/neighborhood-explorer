@@ -1,5 +1,6 @@
 var infowindow, map, marker, broomfield, locations;
 
+var filteredMarkers=[];
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
@@ -8,6 +9,50 @@ var markers = [];
 
 
  var ExplorerMap = function(){
+
+  // Sets the map on all markers in the array.
+ function setAllMap(map) {
+  for (var i = 0; i < filteredMarkers.length; i++) {
+    filteredMarkers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+
+
+function filterMarkers() {
+    
+    
+    
+    for (var i = 0; i < locations.length; i++) {
+      
+        filteredMarkers.push(markers[locations[i].markerNum]);
+
+
+    };
+  
+    clearMarkers();
+    setAllMap();
+
+    
+  }   
+
+
+
+
+
+
+
 
 
  	broomfield= new google.maps.LatLng(39.925899, -105.132387);
@@ -78,18 +123,20 @@ var ExplorerViewModel = function(){
 
  }
 
+
+
  
-	
 
  //filter the items using the filter text
     self.filteredItems = ko.computed(function() {
     var filter = self.filter().toLowerCase();
     if (!filter) {
+        filteredMarkers=[];
         return self.locations();
     } else {
         return ko.utils.arrayFilter(locations, function(location) {
             return location.name.toLowerCase().indexOf(filter) >= 0;
-            self.filterMarkers();
+                       
         });
     }
 }, self);   
