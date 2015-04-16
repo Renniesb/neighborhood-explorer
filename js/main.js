@@ -61,6 +61,8 @@ var ExplorerViewModel = function(){
 
   self.markers=ko.observableArray(markers);
 
+  self.filter= ko.observable('');
+
   // Create function to open info windows in response to clicks on list-view. 
   self.OpenInfoWindow= function(locations){
 
@@ -76,17 +78,18 @@ var ExplorerViewModel = function(){
 
  }
 
- self.filter= ko.observable('');
+ 
 	
 
  //filter the items using the filter text
     self.filteredItems = ko.computed(function() {
-    var filter = this.filter().toLowerCase();
+    var filter = self.filter().toLowerCase();
     if (!filter) {
         return self.locations();
     } else {
-        return ko.utils.arrayFilter(self.locations(), function(location) {
-            return ko.utils.stringStartsWith(location.name().toLowerCase(), filter);
+        return ko.utils.arrayFilter(locations, function(location) {
+            return location.name.toLowerCase().indexOf(filter) >= 0;
+            self.filterMarkers();
         });
     }
 }, self);   
