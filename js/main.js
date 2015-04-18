@@ -78,17 +78,48 @@ var ExplorerViewModel = function(){
      setTimeout(function(){ point.setAnimation(null); }, 750);
 
  }
+  self.hideMarkers= function(){
+           for (var i = 0; i < self.markers.length; i++) {
+            markers[i].setMap(null);
+          };
+        }
+
+  self.showAllMarkers = function(){
+           for (var i = 0; i < self.markers.length; i++) {
+            markers[i].setMap(map);
+          };
+  }
+
+  self.showSelectedMarkers = function(){
+  for (var i = 0; i < self.locations.length; i++) {
+             markers[locations[i].markerNum].setMap(map);
+            }
+      }
+
+
 
  //filter the items using the filter text
     self.filteredItems = ko.computed(function() {
     var filter = self.filter().toLowerCase();
     if (!filter) {
+      
+      self.showAllMarkers();
         return self.locations();
+
     } else {
-        return ko.utils.arrayFilter(locations, function(location) {
-            return location.name.toLowerCase().indexOf(filter) >= 0;
-                       
+
+       
+        return ko.utils.arrayFilter(self.locations(), function(location) {
+            return location.name.toLowerCase().indexOf(filter) >= 0;   
+
+                                 
         });
+        self.hideMarkers();
+
+        self.showSelectedMarkers();
+           
+
+
     }
 }, self);   
 }
