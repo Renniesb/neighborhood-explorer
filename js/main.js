@@ -1,6 +1,4 @@
 var infowindow, map, marker, broomfield, locations;
-
-var filteredMarkers=[];
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
@@ -80,19 +78,19 @@ var ExplorerViewModel = function(){
  }
   self.hideMarkers= function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(null);
+            markers[i].marker.setMap(null);
           };
         }
 
   self.showAllMarkers = function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(map);
+            markers[i].marker.setMap(map);
           };
   }
 
   self.showSelectedMarkers = function(){
-  for (var i = 0; i < self.locations.length; i++) {
-             markers[locations[i].markerNum].setMap(map);
+  for (var i = 0; i < self.filteredItems.length; i++) {
+             markers[filteredItems[i].markerNum].marker.setMap(map);
             }
       }
 
