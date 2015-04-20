@@ -15,7 +15,7 @@
 
     <!-- place searchbox with a binding to the search term -->
     <input id="filter-box" placeholder="Filter results by: Name" type="search" data-bind="value: filter, valueUpdate:'keyup'" />
-    <div id="map-canvas"></div>
+    
     
     <!-- iterate through the locations-->
     <ul data-bind="foreach: filterList()" id="list-view">
@@ -24,6 +24,8 @@
       <li data-bind="text: name , click: $parent.OpenInfoWindow"></li>
           
     </ul>
+    
+    <div id="map-canvas"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     <script src="bower_components/knockout.js/knockout.js"></script> 

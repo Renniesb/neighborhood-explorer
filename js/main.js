@@ -2,7 +2,7 @@ var infowindow, map, marker, broomfield, locations;
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 0},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 1},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 2}];
+ locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 0},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 1},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 2}, {name: "Zaika Indian Cuisine", lat: 39.920982, long:-105.087010, markerNum: 3}];
 
 
 
