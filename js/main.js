@@ -9,20 +9,20 @@ var markers = [];
  var ExplorerMap = function(){
 
 
- 	broomfield= new google.maps.LatLng(39.925899, -105.132387);
-	
-	var mapOptions = {
-	  zoom: 12,
+  broomfield= new google.maps.LatLng(39.925899, -105.132387);
+  
+  var mapOptions = {
+    zoom: 12,
     center: broomfield
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
- 	infowindow = new google.maps.InfoWindow();
+  infowindow = new google.maps.InfoWindow();
   var i;
   // create marker functions to place markers on map and set up the info window
- 	for (i = 0; i < locations.length; i++) {
- 		marker = new google.maps.Marker({
+  for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
             map: map,
             title: locations[i].name
@@ -46,15 +46,15 @@ var markers = [];
 
         markers.push(marker);
 
- 	};
+  };
 
 
 
 }
 
 var ExplorerViewModel = function(){
-	var self = this;
-	
+  var self = this;
+  
   // observe the global array of locations
   self.locations= ko.observableArray(locations);
 
@@ -78,17 +78,17 @@ var ExplorerViewModel = function(){
  }
   self.hideMarkers= function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].marker.setMap(null);
+            markers[i].setMap(null);
           };
         }
 
   self.showAllMarkers = function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].marker.setMap(map);
+            markers[i].setMap(map);
           };
   }
 
-  self.filter = function(){
+  self.filterArray = function(filter){
        return ko.utils.arrayFilter(self.locations(), function(location) {
         return location.name.toLowerCase().indexOf(filter) >= 0;   
 
@@ -97,7 +97,7 @@ var ExplorerViewModel = function(){
 
   }
 
-  self.displayMarkers = function(){
+  self.displayMarkers = function(filteredmarkers){
   for (var i = 0; i < self.filteredmarkers.length; i++) {
              markers[filteredmarkers[i].markerNum].marker.setMap(map);
             }
@@ -105,18 +105,20 @@ var ExplorerViewModel = function(){
 
 
 
-self.filterMarkers = function(){
-
+self.filterLists = function(){
+var filter = self.filter().toLowerCase();
   if (!filter) {
       self.showAllMarkers();
      return self.locations();
-  };
+  } else {
 
   self.hideMarkers();
   var filteredmarkers = [];
-  filteredmarkers = self.filter();
+  filteredmarkers = self.filterArray(filter);
   self.displayMarkers(filteredmarkers);
-  return filteredmarkers
+  return filteredmarkers;
+
+  }
 }
 
 //  //filter the items using the filter text
@@ -143,7 +145,7 @@ self.filterMarkers = function(){
 
 //     }
 // }, self);   
-// }
+}
 
 
 
