@@ -76,18 +76,20 @@ var ExplorerViewModel = function(){
      setTimeout(function(){ point.setAnimation(null); }, 750);
 
  }
-  self.hideMarkers= function(){
-           for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(null);
+ //Handles the showing and hiding of all markers depending on setMap() value
+  self.showOrHideMarkers= function(state){
+           for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(state);
           };
         }
 
-  self.showAllMarkers = function(){
-           for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(map);
-          };
-  }
+  // self.showAllMarkers = function(){
+  //          for (var i = 0; i < markers.length; i++) {
+  //           markers[i].setMap(map);
+  //         };
+  // }
 
+// returns array to the filteredmarkers array definition
   self.filterArray = function(filter){
        return ko.utils.arrayFilter(self.locations(), function(location) {
         return location.name.toLowerCase().indexOf(filter) >= 0;   
@@ -96,8 +98,8 @@ var ExplorerViewModel = function(){
        });
 
   }
-
-  self.displayMarkers = function(filteredmarkers){
+//displays selected markers
+  self.displaySelected = function(filteredmarkers){
   for (var i = 0; i < filteredmarkers.length; i++) {
              markers[filteredmarkers[i].markerNum].setMap(map);
             }
@@ -108,14 +110,14 @@ var ExplorerViewModel = function(){
 self.filterLists = function(){
 var filter = self.filter().toLowerCase();
   if (!filter) {
-      self.showAllMarkers();
+      self.showOrHideMarkers(map);
      return self.locations();
   } else {
 
-  self.hideMarkers();
+  self.showOrHideMarkers(null);
   var filteredmarkers = [];
   filteredmarkers = self.filterArray(filter);
-  self.displayMarkers(filteredmarkers);
+  self.displaySelected(filteredmarkers);
   return filteredmarkers;
 
   }
