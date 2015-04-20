@@ -88,39 +88,62 @@ var ExplorerViewModel = function(){
           };
   }
 
-  self.showSelectedMarkers = function(){
-  for (var i = 0; i < self.filteredItems.length; i++) {
-             markers[filteredItems[i].markerNum].marker.setMap(map);
+  self.filter = function(){
+       return ko.utils.arrayFilter(self.locations(), function(location) {
+        return location.name.toLowerCase().indexOf(filter) >= 0;   
+
+                                 
+       });
+
+  }
+
+  self.displayMarkers = function(){
+  for (var i = 0; i < self.filteredmarkers.length; i++) {
+             markers[filteredmarkers[i].markerNum].marker.setMap(map);
             }
       }
 
 
 
- //filter the items using the filter text
-    self.filteredItems = ko.computed(function() {
-    var filter = self.filter().toLowerCase();
-    if (!filter) {
-      
-      self.showAllMarkers();
-        return self.locations();
+self.filterMarkers = function(){
 
-    } else {
+  if (!filter) {
+      self.showAllMarkers();
+     return self.locations();
+  };
+
+  self.hideMarkers();
+  var filteredmarkers = [];
+  filteredmarkers = self.filter();
+  self.displayMarkers(filteredmarkers);
+  return filteredmarkers
+}
+
+//  //filter the items using the filter text
+//     self.filteredItems = ko.computed(function() {
+//     var filter = self.filter().toLowerCase();
+//     if (!filter) {
+      
+//       self.showAllMarkers();
+//         return self.locations();
+
+//     } else {
 
        
-        return ko.utils.arrayFilter(self.locations(), function(location) {
-            return location.name.toLowerCase().indexOf(filter) >= 0;   
+//         return ko.utils.arrayFilter(self.locations(), function(location) {
+//             return location.name.toLowerCase().indexOf(filter) >= 0;   
 
                                  
-        });
-        self.hideMarkers();
+//         });
+//         self.hideMarkers();
 
-        self.showSelectedMarkers();
+//         self.showSelectedMarkers();
            
 
 
-    }
-}, self);   
-}
+//     }
+// }, self);   
+// }
 
 
 
