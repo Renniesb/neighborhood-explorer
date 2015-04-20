@@ -78,13 +78,13 @@ var ExplorerViewModel = function(){
  }
   self.hideMarkers= function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].marker.setMap(null);
+            markers[i].setMap(null);
           };
         }
 
   self.showAllMarkers = function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].marker.setMap(map);
+            markers[i].setMap(map);
           };
   }
 
