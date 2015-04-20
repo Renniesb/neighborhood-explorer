@@ -78,13 +78,13 @@ var ExplorerViewModel = function(){
  }
   self.hideMarkers= function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(null);
+            markers[i].marker.setMap(null);
           };
         }
 
   self.showAllMarkers = function(){
            for (var i = 0; i < self.markers.length; i++) {
-            markers[i].setMap(map);
+            markers[i].marker.setMap(map);
           };
   }
 
@@ -98,8 +98,8 @@ var ExplorerViewModel = function(){
   }
 
   self.displayMarkers = function(filteredmarkers){
-  for (var i = 0; i < self.filteredmarkers.length; i++) {
-             markers[filteredmarkers[i].markerNum].marker.setMap(map);
+  for (var i = 0; i < filteredmarkers.length; i++) {
+             markers[filteredmarkers[i].markerNum].setMap(map);
             }
       }
 
