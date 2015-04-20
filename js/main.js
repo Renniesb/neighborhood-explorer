@@ -83,12 +83,6 @@ var ExplorerViewModel = function(){
           };
         }
 
-  // self.showAllMarkers = function(){
-  //          for (var i = 0; i < markers.length; i++) {
-  //           markers[i].setMap(map);
-  //         };
-  // }
-
 // returns array to the filteredmarkers array definition
   self.filterArray = function(filter){
        return ko.utils.arrayFilter(self.locations(), function(location) {
@@ -106,8 +100,8 @@ var ExplorerViewModel = function(){
       }
 
 
-
-self.filterLists = function(){
+//Manages filtering of list view and markers
+self.filterList = function(){
 var filter = self.filter().toLowerCase();
   if (!filter) {
       self.showOrHideMarkers(map);
@@ -123,30 +117,7 @@ var filter = self.filter().toLowerCase();
   }
 }
 
-//  //filter the items using the filter text
-//     self.filteredItems = ko.computed(function() {
-//     var filter = self.filter().toLowerCase();
-//     if (!filter) {
-      
-//       self.showAllMarkers();
-//         return self.locations();
 
-//     } else {
-
-       
-//         return ko.utils.arrayFilter(self.locations(), function(location) {
-//             return location.name.toLowerCase().indexOf(filter) >= 0;   
-
-                                 
-//         });
-//         self.hideMarkers();
-
-//         self.showSelectedMarkers();
-           
-
-
-//     }
-// }, self);   
 }
 
 

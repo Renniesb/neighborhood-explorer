@@ -9,6 +9,8 @@
 
 
   <body>
+
+  <h1>Broomfield - Colorado: Restaurant Explorer</h1>
     
 
     <!-- place searchbox with a binding to the search term -->
@@ -16,7 +18,7 @@
     <div id="map-canvas"></div>
     
     <!-- iterate through the locations-->
-    <ul data-bind="foreach: filterLists()" id="list-view">
+    <ul data-bind="foreach: filterList()" id="list-view">
     
    	  <!--append the name of each location to list item and make corresponding infowindow open with a click event -->
       <li data-bind="text: name , click: $parent.OpenInfoWindow"></li>
