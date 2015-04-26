@@ -32,11 +32,11 @@
      * Construct the URL to call for the API request
      */
     function constructYelpURL() {
-        var mapBounds = map.getBounds();
-        /*var URL = "http://api.yelp.com/" +
+        /*var mapBounds = map.getBounds();
+        var URL = "http://api.yelp.com/" +
             "business_review_search?"+
             "callback=" + "handleResults" +
-            "&term=" + document.getElementById("term").value + 
+            "&term=" + document.getElementById("filter-box").value + 
             "&num_biz_requested=10" +
             "&tl_lat=" + mapBounds.getSouthWest().lat() +
             "&tl_long=" + mapBounds.getSouthWest().lng() + 
@@ -46,7 +46,7 @@
 		var URL = "http://api.yelp.com/" +
             "business_review_search?"+
             "callback=" + "handleResults" +
-            "&term=" + document.getElementById("term").value + 
+            "&term=" + document.getElementById("filter-box").value + 
             "&num_biz_requested=20" +
             "&location=" + document.getElementById("location").value +
             "&ywsid=" + YWSID;
