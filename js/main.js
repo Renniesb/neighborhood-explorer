@@ -148,12 +148,12 @@ var getTips = function( marker){
          
 
          var venue = response.response.venues[0];
-         var venueLoc = venue.location;
+         var venueLoc = venue.contact.formattedPhone;
 
-    for (var i = 0; i < venue.length; i++) {
+   
         
         $windowContent.append('<p>'+venueLoc+'</p>');
-    };
+   
 
   }).error(function(e){
     $windowContent.text('Content could not be loaded');
