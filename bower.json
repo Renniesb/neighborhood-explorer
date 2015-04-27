@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "knockout.js": "~3.1.0"
+    "knockout.js": "~3.1.0",
+    "jquery": "~2.1.3"
   }
 }

@@ -34,12 +34,17 @@ var markers = [];
             return function() {
 
                 // set info window with a title and open the info window
-                infowindow.setContent(marker.title);
+                //infowindow.setTitle(marker.title);
+                infowindow.setContent(marker.title+"<div id='content'></div>");
                 infowindow.open(map, marker);
+
+                
+
 
               // add marker animation by setting and timing out animation
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
+                getTips(marker);
                             
             }
         })(marker));
@@ -117,6 +122,43 @@ var filter = self.filter().toLowerCase();
   }
 }
 
+
+}
+
+
+
+
+var getTips = function( marker){
+        var $windowContent = $('#content');
+        /* the foursquare tips api url */
+        var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
+            'NFLHHJ350PG5BFEFQB2AZY2CJ3TUCUYR3Q14QPL5L35JT4WR' +
+            '&client_secret=WDNBZ4J3BISX15CF1MYOBHBP2RUSF2YSRLVPZ3F' +
+            '4WZUYZGWR&v=20130815' + '&ll=' + marker.position.k + ',' +
+            marker.position.D + '&query=\'' + marker.title + '\'&limit=1';
+
+        /* perform the actual jquery request and get json in return
+         * then use that to build out an html string that will be used
+         * for the infowindow string as a substring
+         */
+
+
+  $.getJSON(url, function(response){
+
+         
+
+         var venue = response.response.venues[0];
+         var venueLoc = venue.location;
+
+    for (var i = 0; i < venue.length; i++) {
+        
+        $windowContent.append('<p>'+venueLoc+'</p>');
+    };
+
+  }).error(function(e){
+    $windowContent.text('Content could not be loaded');
+
+  });
 
 }
 
