@@ -149,10 +149,15 @@ var getTips = function( marker){
 
          var venue = response.response.venues[0];
          var venueLoc = venue.contact.formattedPhone;
+         var venueAddress = venue.location.formattedAddress;
+           var venuePhotoPrefix = venue.categories[0].icon.prefix+'bg'+'_64';
+           var venuePhoto = venuePhotoPrefix + venue.categories[0].icon.suffix;
 
    
         
         $windowContent.append('<p>'+venueLoc+'</p>');
+        $windowContent.append('<p>'+venueAddress+'</p>');
+        $windowContent.append('<img src="'+ venuePhoto+'">');
    
 
   }).error(function(e){
