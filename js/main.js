@@ -44,7 +44,7 @@ var markers = [];
               // add marker animation by setting and timing out animation
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
-                getTips(marker);
+                getApi(marker);
                             
             }
         })(marker));
@@ -74,11 +74,13 @@ var ExplorerViewModel = function(){
 
     // set info window with a title and open the info window
      infowindow.open(map, point);
-     infowindow.setContent(point.title);
+     infowindow.setContent(point.title+"<div id='content'></div>");
 
      // add marker animation by setting and timing out animation
      point.setAnimation(google.maps.Animation.BOUNCE);
      setTimeout(function(){ point.setAnimation(null); }, 750);
+
+     getApi(point); 
 
  }
  //Handles the showing and hiding of all markers depending on setMap() value
@@ -128,7 +130,7 @@ var filter = self.filter().toLowerCase();
 
 
 
-var getTips = function( marker){
+var getApi = function( marker){
         var $windowContent = $('#content');
         /* the foursquare tips api url */
         var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
