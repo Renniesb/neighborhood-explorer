@@ -131,18 +131,19 @@ var filter = self.filter().toLowerCase();
 
 
 var getApi = function( marker){
+
+        var lat= marker.position.lat();
+        var long = marker.position.lng();
+
         var $windowContent = $('#content');
         /* the foursquare tips api url */
         var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
             'NFLHHJ350PG5BFEFQB2AZY2CJ3TUCUYR3Q14QPL5L35JT4WR' +
             '&client_secret=WDNBZ4J3BISX15CF1MYOBHBP2RUSF2YSRLVPZ3F' +
-            '4WZUYZGWR&v=20130815' + '&ll=' + marker.position.k + ',' +
-            marker.position.D + '&query=\'' + marker.title + '\'&limit=1';
+            '4WZUYZGWR&v=20130815' + '&ll=' + lat + ',' +
+           long + '&query=\'' + marker.title + '\'&limit=1';
 
-        /* perform the actual jquery request and get json in return
-         * then use that to build out an html string that will be used
-         * for the infowindow string as a substring
-         */
+      
 
 
   $.getJSON(url, function(response){
