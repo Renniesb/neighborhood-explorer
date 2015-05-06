@@ -6,6 +6,8 @@ var markers = [];
 
  var ExplorerMap = function(){
 
+
+
   broomfield= new google.maps.LatLng(39.925899, -105.132387);
   
   var mapOptions = {
@@ -43,6 +45,11 @@ var markers = [];
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
                 getApi(marker);
+
+                //set up photo api link for specific markers
+
+
+                //grab the Restaurant image view by getting the id of 
                             
             };
         })(marker));
@@ -116,10 +123,14 @@ var filter = self.filter().toLowerCase();
 };
 
 var getApi = function( marker){
+
+        var $windowContent = $('#content');
+
+        // if ($windowContent) {
         var lat= marker.position.lat();
         var long = marker.position.lng();
 
-        var $windowContent = $('#content');
+        
         /* the foursquare tips api url */
         var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
             'NFLHHJ350PG5BFEFQB2AZY2CJ3TUCUYR3Q14QPL5L35JT4WR' +
@@ -142,6 +153,15 @@ var getApi = function( marker){
     $windowContent.text('Content could not be loaded');
 
   });
+
+// }
+
+// else{
+//        var streetPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location='+ address;  
+
+//   $body.append('<img src="'+ streetPhoto + '">');
+
+// }
 };
 google.maps.event.addDomListener(window, 'load', ExplorerMap);
 ko.applyBindings(new ExplorerViewModel());
