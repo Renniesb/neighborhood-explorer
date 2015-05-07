@@ -2,16 +2,19 @@ var infowindow, map, marker, broomfield, locations;
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.934668, long: -105.135171, markerNum: 0},{name: "Heaven Dragon Restaurant",lat: 39.939406, long: -105.089853, markerNum: 1},{name: "Corona's Mexican Grill", lat: 39.946250, long: -105.012949, markerNum: 2}, {name: "Zaika Indian Cuisine", lat: 39.920982, long:-105.087010, markerNum: 3}];
-
+ locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3}];
+ imageRefs = [{ key: "CnRnAAAA3NGXX-2qaNflzChWjxrzpHMhrp7xd_zfDoKIe_78WhYfmMXdByfaRn4xr6O2HEDmtFQKMQcvZ8-DYWstI2c2tDdj_LmzYeJULrxIdCqQx3ecrSPOiCMlIxqGqu_P47DpBm0cCNvOWQ1fIfjHPWeDexIQFFlsFYtlOK3m06INF4Ye_BoUvHsyKcoOu9BaP8xjsVf6dRidVwo"},
+ {key:"CnRnAAAAFQgfIdSdX-XgmT-1Ma-p-xsFc4ibB8Y2I5hRnclfESY_Q2tGbJB674aXJwpz6_qf3CgGTp9pD5QwPzx83P_3ABEpdz25-pbiI90IySq2F1p1529SLZrGf8eIcSyMDDNLX3auVEgmcFYtyAejBW3p4hIQ5z-pcgD3Xuh0CcDNkFsRwhoUFmNQ7xPJ8sErfAn50Ixn99h_xzc"},
+ {key:"CnRoAAAAlLzAe6lpWBBnufio_sU2snpzr955WUMe2_mJHoyiDOhZhpcIJpKdA-5IDBEcgtx4yynIXY7UMMzEp2mELRVCTs09iNi1MhwlnaI3lV-KK_rm4xERR_5ZrciGo8VlJKGaa6AxnxoXbBJeAHNNiJHNmxIQ8-dJuc5Ybu22mH4PuxvZlxoUTy981qw51u0wH5BkT_XlqKgIe6Q"},
+ {key:"CnRuAAAAVZvId2jQyLv7ldiUcCLrj3NhFynsM4Wv72Bmw3_QmZetUJVxo5FtSMdMsD3bfBUUOToOpdoH_SDpmsli1EVnN5J77mYKqNT7jtXBryNSep6q095sqGX1j9PVEoL3mdTWcsc0rUnpJe8d5GTyfAb96xIQ5p07_IH5keYVW_mhn9F53xoUTM3__Bshvt-ZZGIGdRgvHNR8voY"}];
  var ExplorerMap = function(){
 
 
 
-  broomfield= new google.maps.LatLng(39.925899, -105.132387);
+  broomfield= new google.maps.LatLng(39.922802, -105.118662);
   
   var mapOptions = {
-    zoom: 12,
+    zoom: 13,
     center: broomfield
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -30,7 +33,8 @@ var markers = [];
     marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
             map: map,
-            title: locations[i].name
+            title: locations[i].name,
+            photoRef: imageRefs[i].key
         });    
 
         google.maps.event.addListener(marker, 'click', (function(marker)  {
@@ -46,10 +50,13 @@ var markers = [];
                 setTimeout(function(){ marker.setAnimation(null); }, 750);
                 getApi(marker);
 
-                //set up photo api link for specific markers
-
-
-                //grab the Restaurant image view by getting the id of 
+               // set up photo api link for specific markers
+              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + marker.photoRef;
+               var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
+                
+                //grab the Restaurant image view by its id and set the image source
+                var restaurantImg= document.getElementById('place-photo');
+                restaurantImg.src= photoLink;
                             
             };
         })(marker));
@@ -80,6 +87,14 @@ var ExplorerViewModel = function(){
      // add marker animation by setting and timing out animation
      point.setAnimation(google.maps.Animation.BOUNCE);
      setTimeout(function(){ point.setAnimation(null); }, 750);
+
+      // set up photo api link for specific markers
+              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + point.photoRef;
+               var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
+                
+      //grab the Restaurant image view by its id and set the image source
+                var restaurantImg= document.getElementById('place-photo');
+                restaurantImg.src= photoLink;          
 
      getApi(point); 
 

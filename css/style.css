@@ -14,7 +14,6 @@ html, body{
       }
           
 h1{	
-
 	position: absolute;
 	text-align: center;
 	width: 100%;
@@ -24,17 +23,24 @@ h1{
 	margin: 0px;
 }
 
+#mainav{
+	width: 100%;
+	height:240px;
+	background-color: Lavender;
+}
+
+#mainav img{
+	width: 650px;
+	padding-top: 50px;
+	margin-left: auto;
+    margin-right: auto;
+	
+}
+
 #place-photo{
 	position: relative;
-
-	 /*position:fixed;
-    top: 0;
-    left: 0;*/
-    width: 100%;
-    height: 150px;
-    /*height: 400px;*/
-   /* z-index:-1;
-    opacity:1;*/
+	display: block;
+    height: 180px;       
 }
 
 ul {
@@ -47,7 +53,7 @@ ul {
 }
 
 li {
-
+	text-align: center;
 	border-bottom: 1px solid black;
 	padding: 4px;
 
