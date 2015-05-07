@@ -1,28 +1,4 @@
-@media screen and (max-width:1260px){
-h1{
-	position: absolute;
-	text-align: center;
-	
-	padding-top: 75px;
-	margin: 10px;
-	width: 100%;
-	 z-index: 99;
-	color: white;
-	text-shadow: 2px 2px 10px #000000;
-	margin: 0px;
 
-}
-
-#listview{
-	padding-top: 180px;
-}
-
-
-#mainav img{
-	width: 300px;
-	}
-
-}
 
 
 html, body{
@@ -105,5 +81,33 @@ li {
 	top: 37px;
 	left: 15px;
 	margin-top: 0px;
+
+}
+
+@media screen and (min-width:150px)and (max-width: 1296px){
+h1{
+	position: absolute;
+	text-align: center;
+	
+	font-size: 25px;
+	margin: 10px;
+	width: 100%;
+	 z-index: 99;
+	color: white;
+	text-shadow: 2px 2px 10px #000000;
+	margin: 0px;
+
+}
+
+#listview{
+	padding-top: 180px;
+}
+
+
+#mainav img{
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	}
 
 }
