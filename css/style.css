@@ -85,24 +85,28 @@ li {
 @media screen and (min-width:150px)and (max-width: 402px){
 		
 		#mainav img{
-	width: 100px;
-	height: 100px;
-	margin-left: 250px;
+	width: 150px;
+	height: 150px;
+	margin-left: 160px;
 	margin-top: 26px;
 
 	}
 	h1{
-		font-size: 15px;
+		font-size: 16px;
 	}
 
 
 	
 	ul{
-		width: 230px;
+		width: 140px;
 	}
 
 	li{
-		text-align: center;
+		text-align: left;
+	}
+
+	#mainav{
+		
 	}
 
 

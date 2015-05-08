@@ -2,11 +2,14 @@ var infowindow, map, marker, broomfield, locations;
 var markers = [];
   
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3}];
- imageRefs = [{ key: "CnRnAAAA3NGXX-2qaNflzChWjxrzpHMhrp7xd_zfDoKIe_78WhYfmMXdByfaRn4xr6O2HEDmtFQKMQcvZ8-DYWstI2c2tDdj_LmzYeJULrxIdCqQx3ecrSPOiCMlIxqGqu_P47DpBm0cCNvOWQ1fIfjHPWeDexIQFFlsFYtlOK3m06INF4Ye_BoUvHsyKcoOu9BaP8xjsVf6dRidVwo"},
+ locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3},{name: "Village Tavern", lat: 39.9318740 , long: -105.1339390, markerNum: 4 },{name: "Flatz Restaurant", lat: 39.9269130 , long: -105.1293530 , markerNum: 5}];
+ imageRefs = [
+ { key: "CnRnAAAA3NGXX-2qaNflzChWjxrzpHMhrp7xd_zfDoKIe_78WhYfmMXdByfaRn4xr6O2HEDmtFQKMQcvZ8-DYWstI2c2tDdj_LmzYeJULrxIdCqQx3ecrSPOiCMlIxqGqu_P47DpBm0cCNvOWQ1fIfjHPWeDexIQFFlsFYtlOK3m06INF4Ye_BoUvHsyKcoOu9BaP8xjsVf6dRidVwo"},
  {key:"CnRnAAAAFQgfIdSdX-XgmT-1Ma-p-xsFc4ibB8Y2I5hRnclfESY_Q2tGbJB674aXJwpz6_qf3CgGTp9pD5QwPzx83P_3ABEpdz25-pbiI90IySq2F1p1529SLZrGf8eIcSyMDDNLX3auVEgmcFYtyAejBW3p4hIQ5z-pcgD3Xuh0CcDNkFsRwhoUFmNQ7xPJ8sErfAn50Ixn99h_xzc"},
  {key:"CnRoAAAAlLzAe6lpWBBnufio_sU2snpzr955WUMe2_mJHoyiDOhZhpcIJpKdA-5IDBEcgtx4yynIXY7UMMzEp2mELRVCTs09iNi1MhwlnaI3lV-KK_rm4xERR_5ZrciGo8VlJKGaa6AxnxoXbBJeAHNNiJHNmxIQ8-dJuc5Ybu22mH4PuxvZlxoUTy981qw51u0wH5BkT_XlqKgIe6Q"},
- {key:"CnRuAAAAVZvId2jQyLv7ldiUcCLrj3NhFynsM4Wv72Bmw3_QmZetUJVxo5FtSMdMsD3bfBUUOToOpdoH_SDpmsli1EVnN5J77mYKqNT7jtXBryNSep6q095sqGX1j9PVEoL3mdTWcsc0rUnpJe8d5GTyfAb96xIQ5p07_IH5keYVW_mhn9F53xoUTM3__Bshvt-ZZGIGdRgvHNR8voY"}];
+ {key:"CnRuAAAAVZvId2jQyLv7ldiUcCLrj3NhFynsM4Wv72Bmw3_QmZetUJVxo5FtSMdMsD3bfBUUOToOpdoH_SDpmsli1EVnN5J77mYKqNT7jtXBryNSep6q095sqGX1j9PVEoL3mdTWcsc0rUnpJe8d5GTyfAb96xIQ5p07_IH5keYVW_mhn9F53xoUTM3__Bshvt-ZZGIGdRgvHNR8voY"},
+ {key:"CnRoAAAA9BC4J-VXLiik7avSNfEIJyzvWAhMPMFuy10mdN5yqT1hNio9_B3Uifr8f9_cfL-FRlniLgGHHfU8RPIVcOHrlDwetsj1Us6ystFjj4vj8myyHNmSYldqvkzCPlo84couOj691t3FEAF3KYLd96nG9RIQRAvZzigo2Hiaa248LpJcoxoURjiTmN5jf__lQWEXhlZdEpizA1E"},
+ {key:"CnRnAAAADh1A0mqzYDcZo4XLJKgV78lxL8CMDXd9RoxJcJcw_drtCQzXekKiT2IYRwsbblNa6gq3IH922rGFjnhv38ZkKa6Of98rm8IJraaBusjrWVLvW4-BRoKqkcefcowOL-Kyb7Gu1w4l31XW-kHMxxg67BIQNto6_7Ktc21DE3fLjnbwyhoUx7RpjsdvDSVjv9QtLIbVnsqfHR4"}];
  var ExplorerMap = function(){
 
 
