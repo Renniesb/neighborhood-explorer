@@ -84,14 +84,19 @@ li {
 
 @media screen and (min-width:150px)and (max-width: 402px){
 
-	 #map-canvas {height: 75%;}
+	#filter-box {
+		top: 28px;
+	}
+
+	 #map-canvas {height: 75%;
+	 }
 		
 		#mainav img{
 	width: 150px;
 	height: 218px;
-	height: 156px;
+	height: 162px;
 	margin-left: 160px;
-	margin-top: 26px;
+	margin-top: 22px;
 	margin-bottom: 0px;
 
 	}
@@ -111,7 +116,7 @@ li {
 
 	#mainav{
 		padding-top: 5px;
-		height: 213px;
+		height: 215px;
 
 	}
 
