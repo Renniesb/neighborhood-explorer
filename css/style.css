@@ -83,13 +83,16 @@ li {
 }
 
 @media screen and (min-width:150px)and (max-width: 402px){
+
+	 #map-canvas {height: 50%;}
 		
 		#mainav img{
 	width: 150px;
-	height: 162px;
-	height: 150px;
+	height: 218px;
+	height: 156px;
 	margin-left: 160px;
 	margin-top: 26px;
+	margin-bottom: 0px;
 
 	}
 	h1{
@@ -107,8 +110,8 @@ li {
 	}
 
 	#mainav{
-
-		height: 220px;
+		padding-top: 5px;
+		height: 213px;
 
 	}
 
