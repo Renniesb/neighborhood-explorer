@@ -2,46 +2,38 @@
 <html>
   <head>
     <title>Neighborhood Explorer</title>
-    <meta charset="utf-8">    
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
-
 
   <body>
 
   <div id="mainav">
   <h1>Broomfield - Colorado: Restaurant Explorer</h1>
 
-
-    
-
     <!-- place searchbox with a binding to the search term -->
     <input id="filter-box" placeholder="Filter results by: Name" type="search" data-bind="value: filter, valueUpdate:'keyup'" />
-    
-    
+
+
     <!-- iterate through the locations-->
     <ul data-bind="foreach: filterList()" id="list-view">
-    
+
    	  <!--append the name of each location to list item and make corresponding infowindow open with a click event -->
       <li data-bind="text: name , click: $parent.OpenInfoWindow"></li>
-          
+
     </ul>
-    
+
     <img id="place-photo" src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=533 zang, broomfield, co" alt="Restaurant photo">
     </div>
-    
-    
+
     <div id="map-canvas"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-    <script src="bower_components/knockout.js/knockout.js"></script> 
+    <script src="bower_components/knockout.js/knockout.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="js/main.js"></script>
   </body>
-
-
-
 
   </body>
 </html>

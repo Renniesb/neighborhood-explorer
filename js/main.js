@@ -1,6 +1,6 @@
 var infowindow, map, marker, broomfield, locations;
 var markers = [];
-  
+
   // create locations objects in an array to be used in marker functions.
  locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3},{name: "Village Tavern", lat: 39.9318740 , long: -105.1339390, markerNum: 4 },{name: "Flatz Restaurant", lat: 39.9269130 , long: -105.1293530 , markerNum: 5}];
  imageRefs = [
@@ -15,7 +15,7 @@ var markers = [];
 
 
   broomfield= new google.maps.LatLng(39.922802, -105.118662);
-  
+
   var mapOptions = {
     zoom: 13,
     center: broomfield
@@ -26,7 +26,7 @@ var markers = [];
     google.maps.event.addDomListener(window, "resize", function() {
     var center = map.getCenter();
     google.maps.event.trigger(map, "resize");
-    map.setCenter(center); 
+    map.setCenter(center);
 });
 
   infowindow = new google.maps.InfoWindow();
@@ -38,7 +38,7 @@ var markers = [];
             map: map,
             title: locations[i].name,
             photoRef: imageRefs[i].key
-        });    
+        });
 
         google.maps.event.addListener(marker, 'click', (function(marker)  {
             return function() {
@@ -46,7 +46,7 @@ var markers = [];
                 // set info window with a title and open the info window
                 //infowindow.setTitle(marker.title);
                 infowindow.setContent(marker.title+"<div id='content'></div>");
-                infowindow.open(map, marker);  
+                infowindow.open(map, marker);
 
               // add marker animation by setting and timing out animation
                 marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -56,11 +56,11 @@ var markers = [];
                // set up photo api link for specific markers
               var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + marker.photoRef;
                var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
-                
+
                 //grab the Restaurant image view by its id and set the image source
                 var restaurantImg= document.getElementById('place-photo');
                 restaurantImg.src= photoLink;
-                            
+
             };
         })(marker));
 
@@ -70,7 +70,7 @@ var markers = [];
 
 var ExplorerViewModel = function(){
   var self = this;
-  
+
   // observe the global array of locations
   self.locations= ko.observableArray(locations);
 
@@ -78,7 +78,7 @@ var ExplorerViewModel = function(){
 
   self.filter= ko.observable('');
 
-  // Create function to open info windows in response to clicks on list-view. 
+  // Create function to open info windows in response to clicks on list-view.
   self.OpenInfoWindow= function(locations){
 
     var point= markers[locations.markerNum];
@@ -94,12 +94,12 @@ var ExplorerViewModel = function(){
       // set up photo api link for specific markers
               var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + point.photoRef;
                var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
-                
+
       //grab the Restaurant image view by its id and set the image source
                 var restaurantImg= document.getElementById('place-photo');
-                restaurantImg.src= photoLink;          
+                restaurantImg.src= photoLink;
 
-     getApi(point); 
+     getApi(point);
 
  };
  //Handles the showing and hiding of all markers depending on setMap() value
@@ -111,7 +111,7 @@ var ExplorerViewModel = function(){
 // returns array to the filteredmarkers array definition
   self.filterArray = function(filter){
        return ko.utils.arrayFilter(self.locations(), function(location) {
-        return location.name.toLowerCase().indexOf(filter) >= 0;                                    
+        return location.name.toLowerCase().indexOf(filter) >= 0;
        });
   };
 //displays selected markers
@@ -148,7 +148,7 @@ var getApi = function( marker){
         var lat= marker.position.lat();
         var long = marker.position.lng();
 
-        
+
         /* the foursquare tips api url */
         var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
             'NFLHHJ350PG5BFEFQB2AZY2CJ3TUCUYR3Q14QPL5L35JT4WR' +
@@ -156,17 +156,17 @@ var getApi = function( marker){
             '4WZUYZGWR&v=20130815' + '&ll=' + lat + ',' +
            long + '&query=\'' + marker.title + '\'&limit=1';
 
-  $.getJSON(url, function(response){        
+  $.getJSON(url, function(response){
 
          var venue = response.response.venues[0];
          var venueLoc = venue.contact.formattedPhone;
          var venueAddress = venue.location.formattedAddress;
           var venuePhotoPrefix = venue.categories[0].icon.prefix+'bg'+'_64';
            var venuePhoto = venuePhotoPrefix + venue.categories[0].icon.suffix;
-           
+
         $windowContent.append('<p>'+venueLoc+'</p>');
         $windowContent.append('<p>'+venueAddress+'</p>');
-        $windowContent.append('<img src="'+ venuePhoto+'">');   
+        $windowContent.append('<img src="'+ venuePhoto+'">');
   }).error(function(e){
     $windowContent.text('Content could not be loaded');
 
@@ -175,7 +175,7 @@ var getApi = function( marker){
 // }
 
 // else{
-//        var streetPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location='+ address;  
+//        var streetPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location='+ address;
 
 //   $body.append('<img src="'+ streetPhoto + '">');
 
