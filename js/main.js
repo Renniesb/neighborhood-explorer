@@ -3,8 +3,10 @@ var markers = [];
 
   // create locations objects in an array to be used in marker functions.
  locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3},{name: "Village Tavern", lat: 39.9318740 , long: -105.1339390, markerNum: 4 },{name: "Flatz Restaurant", lat: 39.9269130 , long: -105.1293530 , markerNum: 5}];
+
+//create image references to be added to api url's
  imageRefs = [
- { key: "CnRnAAAA3NGXX-2qaNflzChWjxrzpHMhrp7xd_zfDoKIe_78WhYfmMXdByfaRn4xr6O2HEDmtFQKMQcvZ8-DYWstI2c2tDdj_LmzYeJULrxIdCqQx3ecrSPOiCMlIxqGqu_P47DpBm0cCNvOWQ1fIfjHPWeDexIQFFlsFYtlOK3m06INF4Ye_BoUvHsyKcoOu9BaP8xjsVf6dRidVwo"},
+ {key: "CnRnAAAA3NGXX-2qaNflzChWjxrzpHMhrp7xd_zfDoKIe_78WhYfmMXdByfaRn4xr6O2HEDmtFQKMQcvZ8-DYWstI2c2tDdj_LmzYeJULrxIdCqQx3ecrSPOiCMlIxqGqu_P47DpBm0cCNvOWQ1fIfjHPWeDexIQFFlsFYtlOK3m06INF4Ye_BoUvHsyKcoOu9BaP8xjsVf6dRidVwo"},
  {key:"CnRnAAAAFQgfIdSdX-XgmT-1Ma-p-xsFc4ibB8Y2I5hRnclfESY_Q2tGbJB674aXJwpz6_qf3CgGTp9pD5QwPzx83P_3ABEpdz25-pbiI90IySq2F1p1529SLZrGf8eIcSyMDDNLX3auVEgmcFYtyAejBW3p4hIQ5z-pcgD3Xuh0CcDNkFsRwhoUFmNQ7xPJ8sErfAn50Ixn99h_xzc"},
  {key:"CnRoAAAAlLzAe6lpWBBnufio_sU2snpzr955WUMe2_mJHoyiDOhZhpcIJpKdA-5IDBEcgtx4yynIXY7UMMzEp2mELRVCTs09iNi1MhwlnaI3lV-KK_rm4xERR_5ZrciGo8VlJKGaa6AxnxoXbBJeAHNNiJHNmxIQ8-dJuc5Ybu22mH4PuxvZlxoUTy981qw51u0wH5BkT_XlqKgIe6Q"},
  {key:"CnRuAAAAVZvId2jQyLv7ldiUcCLrj3NhFynsM4Wv72Bmw3_QmZetUJVxo5FtSMdMsD3bfBUUOToOpdoH_SDpmsli1EVnN5J77mYKqNT7jtXBryNSep6q095sqGX1j9PVEoL3mdTWcsc0rUnpJe8d5GTyfAb96xIQ5p07_IH5keYVW_mhn9F53xoUTM3__Bshvt-ZZGIGdRgvHNR8voY"},
@@ -12,14 +14,14 @@ var markers = [];
  {key:"CnRnAAAADh1A0mqzYDcZo4XLJKgV78lxL8CMDXd9RoxJcJcw_drtCQzXekKiT2IYRwsbblNa6gq3IH922rGFjnhv38ZkKa6Of98rm8IJraaBusjrWVLvW4-BRoKqkcefcowOL-Kyb7Gu1w4l31XW-kHMxxg67BIQNto6_7Ktc21DE3fLjnbwyhoUx7RpjsdvDSVjv9QtLIbVnsqfHR4"}];
  var ExplorerMap = function(){
 
-
-
   broomfield= new google.maps.LatLng(39.922802, -105.118662);
 
   var mapOptions = {
     zoom: 13,
     center: broomfield
   };
+
+// responsive resize function that keeps the markers centered
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
@@ -29,9 +31,10 @@ var markers = [];
     map.setCenter(center);
 });
 
+// create marker functions to place markers on map and set up the info window
   infowindow = new google.maps.InfoWindow();
   var i;
-  // create marker functions to place markers on map and set up the info window
+
   for (i = 0; i < locations.length; i++) {
     marker = new google.maps.Marker({
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
@@ -149,7 +152,7 @@ var getApi = function( marker){
         var long = marker.position.lng();
 
 
-        /* the foursquare tips api url */
+        // the foursquare api url
         var url = 'https://api.foursquare.com/v2/venues/search?client_id=' +
             'NFLHHJ350PG5BFEFQB2AZY2CJ3TUCUYR3Q14QPL5L35JT4WR' +
             '&client_secret=WDNBZ4J3BISX15CF1MYOBHBP2RUSF2YSRLVPZ3F' +
@@ -172,14 +175,6 @@ var getApi = function( marker){
 
   });
 
-// }
-
-// else{
-//        var streetPhoto = 'https://maps.googleapis.com/maps/api/streetview?size=600x400&location='+ address;
-
-//   $body.append('<img src="'+ streetPhoto + '">');
-
-// }
 };
 google.maps.event.addDomListener(window, 'load', ExplorerMap);
 ko.applyBindings(new ExplorerViewModel());
