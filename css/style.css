@@ -11,7 +11,7 @@ html, body{
 
       #map-canvas {
 
-				height: 62%;				
+				height: 100%;				
     			margin: 0px;
     			padding: 0px;
       }
@@ -87,7 +87,11 @@ li {
 		top: 28px;
 	}
 
-	 
+	 #map-canvas {
+
+				height: 62%;				
+    			
+      }
 		
 		#mainav img{
 	width: 150px;
