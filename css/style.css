@@ -130,13 +130,9 @@ li {
 @media screen and (min-width:615px)and (max-width: 800px){
 
 h1{
-	text-align: center;	
+	
 	font-size: 20px;
-	margin: 15px;
-	color: white;
-	text-shadow: 2px 2px 10px #000000;
-	margin: 0px;
-
+	
 }
 
 
@@ -176,13 +172,9 @@ filter-box{
 @media screen and (min-width:801px)and (max-width: 1296px){
 h1{
 	text-align: center;	
-	font-size: 25px;
-	margin: 10px;
-	color: white;
-	text-shadow: 2px 2px 10px #000000;
-	margin: 0px;
-
-}
+	font-size: 20px;
+	margin-bottom: 18px;
+	}
 
 filter-box{
 	top: 25px;
@@ -196,7 +188,7 @@ filter-box{
 #mainav img{
 	width: 300px;
 	height: 163px;
-	margin-top: 22px;
+	margin-top: 27px;
 	margin-left: auto;
 	margin-right: auto;
 	}
