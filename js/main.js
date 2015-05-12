@@ -25,14 +25,6 @@ var markers = [];
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-  // responsive resize function that keeps the markers centered
-
-    // google.maps.event.addDomListener(window, "resize", function() {
-    // var center = map.getCenter();
-    // google.maps.event.trigger(map, "resize");
-    // map.setCenter(center);
-    // });
-
 // create marker functions to place markers on map and set up the info window
   infowindow = new google.maps.InfoWindow();
   var i;
