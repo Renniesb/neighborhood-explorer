@@ -57,7 +57,7 @@ var markers = [];
                 getApi(marker);
 
                // set up photo api link for specific markers
-              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + marker.photoRef;
+              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=260&maxheight=260&photoreference=' + marker.photoRef;
                var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
 
                 //grab the Restaurant image view by its id and set the image source
@@ -95,7 +95,7 @@ var ExplorerViewModel = function(){
      setTimeout(function(){ point.setAnimation(null); }, 750);
 
       // set up photo api link for specific markers
-              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photoreference=' + point.photoRef;
+              var photoApiLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=260&maxheight=260&photoreference=' + point.photoRef;
                var photoLink = photoApiLink + '&key=AIzaSyBFcpEe2y26sK1nKhQUhzKLQGdMPw087u8';
 
       //grab the Restaurant image view by its id and set the image source
@@ -162,13 +162,34 @@ var getApi = function( marker){
   $.getJSON(url, function(response){
 
          var venue = response.response.venues[0];
-         var venueLoc = venue.contact.formattedPhone;
+         var venuePhone = venue.contact.formattedPhone;
          var venueAddress = venue.location.formattedAddress;
-          var venuePhotoPrefix = venue.categories[0].icon.prefix+'bg'+'_64';
-           var venuePhoto = venuePhotoPrefix + venue.categories[0].icon.suffix;
+         var venuePhotoPrefix = venue.categories[0].icon.prefix+'bg'+'_64';
+         var venueIcon = venuePhotoPrefix + venue.categories[0].icon.suffix;
 
-        $windowContent.append('<p>'+venueLoc+'</p>');
-        $windowContent.append('<p>'+venueAddress+'</p>');
+          if (venuePhone) {$windowContent.append('<p>'+venuePhone+'</p>');
+          }
+
+          else{
+                  $windowContent.append('<p> Phone number not found</p>');
+          }
+
+          if (venueAddress) {$windowContent.append('<p>'+venueAddress+'</p>');
+          }
+
+          else{
+                  $windowContent.append('<p> Address not found </p>');
+          }
+
+          if (venuePhoto) {$windowContent.append('<p>'+venueIcon+'</p>');
+          }
+
+          else{
+                  $windowContent.append('<p> Venue icon not found</p>');
+          }
+
+
+
         $windowContent.append('<img src="'+ venuePhoto+'">');
   }).error(function(e){
     $windowContent.text('Content could not be loaded');
