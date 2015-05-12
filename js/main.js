@@ -21,15 +21,17 @@ var markers = [];
     center: broomfield
   };
 
-// responsive resize function that keeps the markers centered
+
   map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
 
-    google.maps.event.addDomListener(window, "resize", function() {
-    var center = map.getCenter();
-    google.maps.event.trigger(map, "resize");
-    map.setCenter(center);
-});
+  // responsive resize function that keeps the markers centered
+
+    // google.maps.event.addDomListener(window, "resize", function() {
+    // var center = map.getCenter();
+    // google.maps.event.trigger(map, "resize");
+    // map.setCenter(center);
+    // });
 
 // create marker functions to place markers on map and set up the info window
   infowindow = new google.maps.InfoWindow();
@@ -48,6 +50,7 @@ var markers = [];
 
                 // set info window with a title and open the info window
                 //infowindow.setTitle(marker.title);
+                map.panTo(marker.getPosition());
                 infowindow.setContent(marker.title+"<div id='content'></div>");
                 infowindow.open(map, marker);
 
@@ -85,6 +88,8 @@ var ExplorerViewModel = function(){
   self.OpenInfoWindow= function(locations){
 
     var point= markers[locations.markerNum];
+
+      map.panTo(point.getPosition());
 
     // set info window with a title and open the info window
      infowindow.open(map, point);
@@ -147,7 +152,6 @@ var getApi = function( marker){
 
         var $windowContent = $('#content');
 
-        // if ($windowContent) {
         var lat= marker.position.lat();
         var long = marker.position.lng();
 
@@ -160,6 +164,8 @@ var getApi = function( marker){
            long + '&query=\'' + marker.title + '\'&limit=1';
 
   $.getJSON(url, function(response){
+
+        //place the data returned in variables and append this data to the info window
 
          var venue = response.response.venues[0];
          var venuePhone = venue.contact.formattedPhone;
@@ -181,7 +187,7 @@ var getApi = function( marker){
                   $windowContent.append('<p> Address not found </p>');
           }
 
-          if (venuePhoto) {$windowContent.append('<p>'+venueIcon+'</p>');
+          if (venueIcon) {$windowContent.append('<img src="'+ venueIcon+'">');
           }
 
           else{
@@ -189,8 +195,6 @@ var getApi = function( marker){
           }
 
 
-
-        $windowContent.append('<img src="'+ venuePhoto+'">');
   }).error(function(e){
     $windowContent.text('Content could not be loaded');
 
