@@ -54,3 +54,5 @@ https://developer.foursquare.com/docs/venues/search
 https://developer.foursquare.com/start/search
 
 https://developers.google.com/places/webservice/photos
+
+http://stackoverflow.com/questions/12314861/google-maps-auto-center-map-on-marker-click
