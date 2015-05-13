@@ -163,8 +163,6 @@ var getApi = function( marker){
          var venue = response.response.venues[0];
          var venuePhone = venue.contact.formattedPhone;
          var venueAddress = venue.location.formattedAddress;
-         var venuePhotoPrefix = venue.categories[0].icon.prefix+'bg'+'_64';
-         var venueIcon = venuePhotoPrefix + venue.categories[0].icon.suffix;
 
           if (venuePhone) {$windowContent.append('<p>'+venuePhone+'</p>');
           }
@@ -178,13 +176,6 @@ var getApi = function( marker){
 
           else{
                   $windowContent.append('<p> Address not found </p>');
-          }
-
-          if (venueIcon) {$windowContent.append('<img src="'+ venueIcon+'">');
-          }
-
-          else{
-                  $windowContent.append('<p> Venue icon not found</p>');
           }
 
 
