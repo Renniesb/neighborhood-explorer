@@ -2,7 +2,7 @@ var infowindow, map, marker, broomfield, locations;
 var markers = [];
 
   // create locations objects in an array to be used in marker functions.
- locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3},{name: "Village Tavern", lat: 39.9318740 , long: -105.1339390, markerNum: 4 },{name: "Flatz Restaurant", lat: 39.9269130 , long: -105.1293530 , markerNum: 5}];
+ locations = [{name: "Azitra Restaurant", lat: 39.9276300, long: -105.1340130, markerNum: 0, icon: 'img/indian-cuisine.png'},{name: "P.F. Chang's",lat: 39.9302280, long: -105.1344480, markerNum: 1, icon: 'img/asian-cuisine.png'},{name: "3 Margaritas", lat: 39.9139220, long: -105.0725720, markerNum: 2, icon: 'img/mexican-cuisine.png'}, {name: "ZO Sushi and Thai", lat: 39.9154820, long:-105.0560200, markerNum: 3, icon: 'img/sushi.png'},{name: "Village Tavern", lat: 39.9318740 , long: -105.1339390, markerNum: 4, icon: 'img/restaurant.png'},{name: "Flatz Restaurant", lat: 39.9269130 , long: -105.1293530 , markerNum: 5, icon: 'img/restaurant.png'}];
 
 //create image references to be added to api url's
  imageRefs = [
@@ -34,6 +34,7 @@ var markers = [];
             position: new google.maps.LatLng(locations[i].lat, locations[i].long),
             map: map,
             title: locations[i].name,
+            icon: locations[i].icon,
             photoRef: imageRefs[i].key
         });
 
