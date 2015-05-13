@@ -14,10 +14,10 @@ var markers = [];
  {key:"CnRnAAAADh1A0mqzYDcZo4XLJKgV78lxL8CMDXd9RoxJcJcw_drtCQzXekKiT2IYRwsbblNa6gq3IH922rGFjnhv38ZkKa6Of98rm8IJraaBusjrWVLvW4-BRoKqkcefcowOL-Kyb7Gu1w4l31XW-kHMxxg67BIQNto6_7Ktc21DE3fLjnbwyhoUx7RpjsdvDSVjv9QtLIbVnsqfHR4"}];
  var ExplorerMap = function(){
 
-  broomfield= new google.maps.LatLng(39.920714, -105.088136);
+  broomfield= new google.maps.LatLng(39.920977, -105.068224);
 
   var mapOptions = {
-    zoom: 14,
+    zoom: 13,
     center: broomfield
   };
 
